@@ -1,0 +1,5 @@
+name: entity-extractor
+version: 1.0.0
+description: Extracts IOCs and structured entities from suspicious payloads.
+skills:
+  - entity-extraction

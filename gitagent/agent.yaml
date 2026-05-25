@@ -1,0 +1,59 @@
+name: ghosttrace-orchestrator
+version: 1.0.0
+description: Autonomous cyber investigation orchestrator — coordinates entity, reputation, risk, and report agents.
+spec_version: "0.1.0"
+author: Soumi Guria
+license: MIT
+
+model:
+  preferred: openai:gpt-4o-mini
+  fallback:
+    - google:gemini-2.0-flash
+    - groq:llama-3.3-70b-versatile
+  constraints:
+    temperature: 0.3
+    max_tokens: 4096
+
+skills:
+  - entity-extraction
+  - reputation-analysis
+  - risk-scoring
+  - report-generation
+  - investigate-payload
+
+tools:
+  - start-investigation
+  - fetch-investigation
+
+agents:
+  entity-extractor:
+    path: agents/entity-extractor
+    role: Extract structured IOCs from suspicious text
+  reputation-analyst:
+    path: agents/reputation-analyst
+    role: Detect scam, phishing, and social-engineering patterns
+  risk-scorer:
+    path: agents/risk-scorer
+    role: Produce threat score, confidence, and classification
+  report-generator:
+    path: agents/report-generator
+    role: Synthesize markdown intelligence report
+
+delegation:
+  mode: explicit
+  router: ghosttrace-orchestrator
+
+runtime:
+  max_turns: 12
+  timeout: 120
+
+tags:
+  - cybersecurity
+  - investigation
+  - multi-agent
+  - phishing-detection
+
+metadata:
+  product: GhostTrace AI
+  runtime_engine: FastAPI + LangGraph
+  challenge: Lyzr GitAgent Hiring Challenge

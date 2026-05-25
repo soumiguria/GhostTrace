@@ -1,0 +1,5 @@
+name: risk-scorer
+version: 1.0.0
+description: Produces quantitative threat assessment and classification.
+skills:
+  - risk-scoring

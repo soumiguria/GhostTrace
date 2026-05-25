@@ -1,0 +1,5 @@
+name: reputation-analyst
+version: 1.0.0
+description: Detects scam language, urgency manipulation, and phishing patterns.
+skills:
+  - reputation-analysis

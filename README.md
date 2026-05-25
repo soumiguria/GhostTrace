@@ -1,8 +1,10 @@
 # GhostTrace AI
 
-**Autonomous multi-agent cyber investigation platform** — analyze suspicious text, URLs, emails, and domains with a LangGraph-orchestrated agent swarm and receive structured threat intelligence reports.
+**Autonomous multi-agent cyber investigation platform** — analyze suspicious text, URLs, emails, and domains with a **[GitAgent](https://github.com/open-gitagent/gitagent)**-defined agent swarm, LangGraph orchestration, and a live investigation dashboard.
 
-![Stack](https://img.shields.io/badge/Next.js-14-black) ![FastAPI](https://img.shields.io/badge/FastAPI-Python-009688) ![LangGraph](https://img.shields.io/badge/LangGraph-Agents-7C3AED)
+Built for the **Lyzr GitAgent Hiring Challenge**.
+
+![Stack](https://img.shields.io/badge/GitAgent-Repo--Native-22d3ee) ![Stack](https://img.shields.io/badge/Next.js-14-black) ![FastAPI](https://img.shields.io/badge/FastAPI-Python-009688) ![LangGraph](https://img.shields.io/badge/LangGraph-Agents-7C3AED)
 
 ## Demo Experience
 
@@ -15,16 +17,33 @@
 ## Architecture
 
 ```
+gitagent/ (SOUL, RULES, skills, sub-agents)  ← version-controlled agent definition
+        ↓
 Input → Entity Extraction → Reputation Analysis → Risk Scoring → Report Generation
-         (regex + LLM)        (scam patterns)      (0-100 score)    (markdown)
+        ↓
+FastAPI + LangGraph + SQLite logs
+        ↓
+Next.js dashboard (live polling)
 ```
 
 | Layer | Tech |
 |-------|------|
+| **GitAgent** | `gitagent/` — agent.yaml, SOUL.md, RULES.md, skills/, agents/, tools/ |
 | Frontend | Next.js 14, TypeScript, Tailwind, Framer Motion |
 | Backend | FastAPI, SQLAlchemy, SQLite (async) |
-| Agents | LangGraph pipeline + OpenAI (demo fallback without API key) |
+| Runtime | LangGraph pipeline; prompts loaded from GitAgent `SKILL.md` files |
 | Live updates | HTTP polling (800ms) |
+
+### GitAgent validate & CLI
+
+```bash
+npx @open-gitagent/gitagent@latest validate --dir ./gitagent
+
+# Optional CLI investigation (requires LLM API key)
+npx @open-gitagent/gitagent@latest --dir ./gitagent "Investigate this phishing email: ..."
+```
+
+See [`gitagent/README.md`](gitagent/README.md) and [`SUBMISSION.md`](SUBMISSION.md) for challenge submission details.
 
 ## Quick Start
 
@@ -76,22 +95,18 @@ Open [http://localhost:3000](http://localhost:3000)
 ## Project Structure
 
 ```
-ghosttrace/
+GhostTrace/
+├── gitagent/                # GitAgent standard (agent.yaml, SOUL.md, skills/, agents/)
 ├── backend/
 │   ├── app/
-│   │   ├── main.py
-│   │   ├── api/routes.py
-│   │   ├── agents/          # Entity, Reputation, Risk, Report
+│   │   ├── agents/          # LangGraph agent runners
 │   │   ├── workflows/       # LangGraph graph
-│   │   ├── services/        # AI + investigation lifecycle
-│   │   ├── models/          # Investigation, AgentLog
-│   │   └── database/
+│   │   ├── services/        # AI + investigation (loads gitagent skills)
+│   │   └── utils/gitagent_loader.py
 │   └── requirements.txt
-└── frontend/
-    └── src/
-        ├── app/page.tsx
-        ├── components/      # ThreatMeter, Console, Report, etc.
-        └── hooks/           # Polling hook
+├── frontend/
+│   └── src/components/      # ThreatMeter, LiveAgentConsole, etc.
+└── SUBMISSION.md            # Lyzr challenge form answers
 ```
 
 ## Environment Variables

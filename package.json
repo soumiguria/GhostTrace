@@ -1,0 +1,10 @@
+{
+  "name": "ghosttrace-ai",
+  "version": "1.0.0",
+  "private": true,
+  "description": "GhostTrace AI — GitAgent-native cyber investigation platform",
+  "scripts": {
+    "gitagent:validate": "npx @open-gitagent/gitagent@latest validate --dir ./gitagent",
+    "gitagent:info": "npx @open-gitagent/gitagent@latest info --dir ./gitagent"
+  }
+}

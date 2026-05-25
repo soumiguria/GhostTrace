@@ -1,0 +1,5 @@
+name: report-generator
+version: 1.0.0
+description: Synthesizes final markdown intelligence report for analysts.
+skills:
+  - report-generation

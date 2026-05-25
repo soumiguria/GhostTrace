@@ -1,0 +1,10 @@
+name: start-investigation
+description: Start a GhostTrace investigation via FastAPI backend
+type: http
+config:
+  method: POST
+  url: "${GHOSTTRACE_API_URL:-http://localhost:8000}/investigate"
+  headers:
+    Content-Type: application/json
+  body:
+    input: "{{payload}}"

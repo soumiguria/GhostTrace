@@ -8,12 +8,18 @@ from typing import Any
 from openai import AsyncOpenAI
 
 from app.config.settings import get_settings
+from app.utils.gitagent_loader import load_skill_prompt
 
 PROMPTS_DIR = Path(__file__).parent / "prompts"
 
 
 def _load_prompt(name: str) -> str:
-    return (PROMPTS_DIR / f"{name}.txt").read_text(encoding="utf-8")
+    """Prefer GitAgent SKILL.md; fall back to legacy prompts/*.txt."""
+    skill_prompt = load_skill_prompt(name)
+    if skill_prompt:
+        return skill_prompt
+    legacy = PROMPTS_DIR / f"{name}.txt"
+    return legacy.read_text(encoding="utf-8")
 
 
 class AIService:
