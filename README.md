@@ -2,8 +2,6 @@
 
 **Autonomous multi-agent cyber investigation platform** — analyze suspicious text, URLs, emails, and domains with a **[GitAgent](https://github.com/open-gitagent/gitagent)**-defined agent swarm, LangGraph orchestration, and a live investigation dashboard.
 
-Built for the **Lyzr GitAgent Hiring Challenge**.
-
 ![Stack](https://img.shields.io/badge/GitAgent-Repo--Native-22d3ee) ![Stack](https://img.shields.io/badge/Next.js-14-black) ![FastAPI](https://img.shields.io/badge/FastAPI-Python-009688) ![LangGraph](https://img.shields.io/badge/LangGraph-Agents-7C3AED)
 
 ## Demo Experience
@@ -42,8 +40,6 @@ npx @open-gitagent/gitagent@latest validate --dir ./gitagent
 # Optional CLI investigation (requires LLM API key)
 npx @open-gitagent/gitagent@latest --dir ./gitagent "Investigate this phishing email: ..."
 ```
-
-See [`gitagent/README.md`](gitagent/README.md) and [`SUBMISSION.md`](SUBMISSION.md) for challenge submission details.
 
 ## Quick Start
 
