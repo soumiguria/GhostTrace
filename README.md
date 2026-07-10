@@ -102,7 +102,7 @@ GhostTrace/
 │   └── requirements.txt
 ├── frontend/
 │   └── src/components/      # ThreatMeter, LiveAgentConsole, etc.
-└── SUBMISSION.md            # Lyzr challenge form answers
+└── SUBMISSION.md            
 ```
 
 ## Environment Variables
