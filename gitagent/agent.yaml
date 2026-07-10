@@ -56,4 +56,4 @@ tags:
 metadata:
   product: GhostTrace AI
   runtime_engine: FastAPI + LangGraph
-  challenge: Lyzr GitAgent Hiring Challenge
+  challenge: GitAgent
