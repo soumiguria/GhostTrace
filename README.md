@@ -135,7 +135,3 @@ GhostTrace/
 4. **Report Agent** — executive markdown intelligence report
 
 Logs persist to SQLite after each step for live polling.
-
-## License
-
-MIT — built as an MVP demo project.
